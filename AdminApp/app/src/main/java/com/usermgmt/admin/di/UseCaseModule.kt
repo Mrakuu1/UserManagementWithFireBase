@@ -1,0 +1,39 @@
+package com.usermgmt.admin.di
+
+
+import com.usermgmt.admin.domain.repository.AuthRepository
+import com.usermgmt.admin.domain.repository.HomeRepository
+import com.usermgmt.admin.domain.usecase.FetchUserListUseCase
+import com.usermgmt.admin.domain.usecase.AdminLoginUseCase
+import com.usermgmt.admin.domain.usecase.RegisterUserUseCase
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+
+@Module
+@InstallIn(SingletonComponent::class)
+object UseCaseModule {
+
+    @Provides
+    fun provideRegisterUseCase(
+        repository: AuthRepository
+    ): RegisterUserUseCase {
+        return RegisterUserUseCase(repository)
+    }
+
+    @Provides
+    fun provideLoginUseCase(
+        repository: AuthRepository
+    ): AdminLoginUseCase {
+        return AdminLoginUseCase(repository)
+    }
+
+    @Provides
+    fun provideFetchUserListUseCase(
+        repository: HomeRepository
+    ) : FetchUserListUseCase {
+        return FetchUserListUseCase(repository)
+    }
+
+}

@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "681332066275",
+    "firebase_url": "https://usermanagementapp-e8bee-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "usermanagementapp-e8bee",
+    "storage_bucket": "usermanagementapp-e8bee.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681332066275:android:7c75b61c068fe1d79e02d6",
+        "android_client_info": {
+          "package_name": "com.usermgmt.admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi9hqeE6LLV4EtNN6iikKEDvQ1KD7T7pU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:681332066275:android:d435b4ceca41d05e9e02d6",
+        "android_client_info": {
+          "package_name": "com.usermgmt.user"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi9hqeE6LLV4EtNN6iikKEDvQ1KD7T7pU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
