@@ -5,6 +5,7 @@ import com.usermgmt.admin.domain.repository.AuthRepository
 import com.usermgmt.admin.domain.repository.HomeRepository
 import com.usermgmt.admin.domain.usecase.FetchUserListUseCase
 import com.usermgmt.admin.domain.usecase.AdminLoginUseCase
+import com.usermgmt.admin.domain.usecase.DeleteUserUseCase
 import com.usermgmt.admin.domain.usecase.RegisterUserUseCase
 import dagger.Module
 import dagger.Provides
@@ -18,22 +19,21 @@ object UseCaseModule {
     @Provides
     fun provideRegisterUseCase(
         repository: AuthRepository
-    ): RegisterUserUseCase {
-        return RegisterUserUseCase(repository)
-    }
+    ) = RegisterUserUseCase(repository)
 
     @Provides
     fun provideLoginUseCase(
         repository: AuthRepository
-    ): AdminLoginUseCase {
-        return AdminLoginUseCase(repository)
-    }
+    ) = AdminLoginUseCase(repository)
 
     @Provides
     fun provideFetchUserListUseCase(
         repository: HomeRepository
-    ) : FetchUserListUseCase {
-        return FetchUserListUseCase(repository)
-    }
+    ) = FetchUserListUseCase(repository)
+
+    @Provides
+    fun provideDeleteUserUseCase(
+        repository: HomeRepository
+    ) = DeleteUserUseCase(repository)
 
 }
