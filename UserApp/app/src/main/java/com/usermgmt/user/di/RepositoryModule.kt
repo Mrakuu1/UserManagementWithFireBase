@@ -1,7 +1,9 @@
 package com.usermgmt.user.di
 
 import com.usermgmt.user.data.repository.AuthRepositoryImpl
+import com.usermgmt.user.data.repository.device.DeviceIdProviderImpl
 import com.usermgmt.user.domain.repository.AuthRepository
+import com.usermgmt.user.domain.repository.device.DeviceInfoProvider
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,5 +20,9 @@ abstract class RepositoryModule {
         impl: AuthRepositoryImpl
     ): AuthRepository
 
-
+    @Binds
+    @Singleton
+    abstract fun bindDeviceProvider(
+        impl: DeviceIdProviderImpl
+    ): DeviceInfoProvider
 }

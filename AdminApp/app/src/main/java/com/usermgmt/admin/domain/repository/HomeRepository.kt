@@ -8,4 +8,6 @@ interface HomeRepository {
     suspend fun fetchUserList(): AppResult<List<User>>
 
     suspend fun deleteUser(userId: String) : AppResult<Unit>
+
+    suspend fun updateUser(userId: User) : AppResult<User>
 }

@@ -1,6 +1,7 @@
 package com.usermgmt.user.domain.usecase
 
 import com.usermgmt.user.core.common.AppResult
+import com.usermgmt.user.core.util.DeviceInfoUtil
 import com.usermgmt.user.domain.model.User
 import com.usermgmt.user.domain.repository.AuthRepository
 

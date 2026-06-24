@@ -1,6 +1,7 @@
 package com.usermgmt.admin.data.firebase
 
 import com.google.firebase.database.FirebaseDatabase
+import com.usermgmt.admin.core.common.AppResult
 import com.usermgmt.admin.core.constants.FirebaseConstants
 import com.usermgmt.admin.domain.model.User
 import kotlinx.coroutines.tasks.await
@@ -34,6 +35,14 @@ class FirebaseDatabaseService(
         return snapshot.children.mapNotNull {
             it.getValue(User::class.java)
         }
+    }
+
+    suspend fun updateUser(user : User) {
+        firebaseDatabase
+            .getReference(FirebaseConstants.USER_TABLE)
+            .child(user.id)
+            .setValue(user)
+            .await()
     }
 
     suspend fun deleteUser(userId: String) {

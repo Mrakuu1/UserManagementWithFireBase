@@ -7,6 +7,7 @@ import com.usermgmt.admin.domain.usecase.FetchUserListUseCase
 import com.usermgmt.admin.domain.usecase.AdminLoginUseCase
 import com.usermgmt.admin.domain.usecase.DeleteUserUseCase
 import com.usermgmt.admin.domain.usecase.RegisterUserUseCase
+import com.usermgmt.admin.domain.usecase.UpdateUserDetailUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,5 +36,10 @@ object UseCaseModule {
     fun provideDeleteUserUseCase(
         repository: HomeRepository
     ) = DeleteUserUseCase(repository)
+
+    @Provides
+    fun provideUpdateUserDetailUseCase(
+        repository: HomeRepository
+    ) = UpdateUserDetailUseCase(repository)
 
 }

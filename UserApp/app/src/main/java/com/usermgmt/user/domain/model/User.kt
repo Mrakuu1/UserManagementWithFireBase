@@ -1,5 +1,7 @@
 package com.usermgmt.user.domain.model
 
+import com.usermgmt.user.core.util.DeviceInfo
+
 data class User(
 
     val id:String = "",
@@ -14,6 +16,7 @@ data class User(
 
     val role:String = "USER",
 
-    val createdAt : Long = System.currentTimeMillis()
+    val createdAt : Long = 0L,
 
+    val deviceData: DeviceInfo? = null
 )

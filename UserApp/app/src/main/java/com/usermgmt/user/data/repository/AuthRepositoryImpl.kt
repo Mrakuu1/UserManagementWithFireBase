@@ -1,6 +1,5 @@
 package com.usermgmt.user.data.repository
 
-import android.util.Log
 import com.google.firebase.auth.FirebaseAuthException
 import com.usermgmt.user.core.common.AppResult
 import com.usermgmt.user.data.firebase.FirebaseAuthService

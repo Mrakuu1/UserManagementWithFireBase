@@ -38,4 +38,13 @@ class HomeRepositoryImpl @Inject constructor(
             AppResult.Error(e.message ?: "Unknown error")
         }
     }
+
+    override suspend fun updateUser(user : User): AppResult<User> {
+        return try {
+            firebaseDatabaseService.updateUser(user)
+            AppResult.Success(user)
+        } catch (e : Exception) {
+            AppResult.Error(e.message ?: "Unknown error")
+        }
+    }
 }

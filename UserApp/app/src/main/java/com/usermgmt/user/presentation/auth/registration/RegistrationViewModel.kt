@@ -3,10 +3,14 @@ package com.usermgmt.user.presentation.auth.registration
 import android.util.Patterns
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.database.core.Context
 import com.usermgmt.user.core.common.AppResult
+import com.usermgmt.user.core.util.DeviceInfoUtil
 import com.usermgmt.user.domain.model.User
+import com.usermgmt.user.domain.usecase.GetDeviceInfoUseCase
 import com.usermgmt.user.domain.usecase.RegisterUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,7 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RegistrationViewModel @Inject constructor(
-    private val registerUserUseCase: RegisterUserUseCase
+    private val registerUserUseCase: RegisterUserUseCase,
+    private val getDeviceInfoUseCase: GetDeviceInfoUseCase
 ) : ViewModel() {
 
     protected val _registrationState = MutableStateFlow(RegistrationState())
@@ -79,7 +84,8 @@ class RegistrationViewModel @Inject constructor(
                     registrationState.value.phone,
                     registrationState.value.password,
                     registrationState.value.role,
-                    registrationState.value.createdAt
+                    registrationState.value.createdAt,
+                    deviceData = getDeviceInfoUseCase.invoke()
                 ),
                 password = registrationState.value.password
             )

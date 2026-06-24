@@ -2,6 +2,8 @@ package com.usermgmt.user.di
 
 
 import com.usermgmt.user.domain.repository.AuthRepository
+import com.usermgmt.user.domain.repository.device.DeviceInfoProvider
+import com.usermgmt.user.domain.usecase.GetDeviceInfoUseCase
 import com.usermgmt.user.domain.usecase.LoginUseCase
 import com.usermgmt.user.domain.usecase.RegisterUserUseCase
 import dagger.Module
@@ -26,5 +28,10 @@ object UseCaseModule {
     ): LoginUseCase {
         return LoginUseCase(repository)
     }
+
+    @Provides
+    fun provideGetDeviceInfoUseCase(
+        repository : DeviceInfoProvider
+    ) = GetDeviceInfoUseCase(repository)
 
 }

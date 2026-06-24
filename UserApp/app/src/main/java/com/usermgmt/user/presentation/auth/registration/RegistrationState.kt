@@ -12,5 +12,5 @@ data class RegistrationState(
     var password: String = "",
     var passwordError: String = "",
     var role: String = "USER",
-    var createdAt: Long = 0L
+    var createdAt: Long = System.currentTimeMillis(),
 )

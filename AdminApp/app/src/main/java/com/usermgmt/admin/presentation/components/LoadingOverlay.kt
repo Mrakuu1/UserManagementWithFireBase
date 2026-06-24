@@ -19,23 +19,24 @@ fun LoadingOverlay(
     if(isLoading){
 
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Color.Black.copy(
-                        alpha = 0.4f
-                    )
-                )
-                .blur(10.dp)
-                // consume clicks
-                .clickable(
-                    enabled = true,
-                    onClick = {}
-                ),
-
             contentAlignment = Alignment.Center
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Color.Black.copy(
+                            alpha = 0.4f
+                        )
+                    )
+                    .blur(10.dp)
+                    // consume clicks
+                    .clickable(
+                        enabled = true,
+                        onClick = {}
+                    ),
 
-        ){
+            ){}
             CircularProgressIndicator(
                 modifier = Modifier.size(50.dp)
             )

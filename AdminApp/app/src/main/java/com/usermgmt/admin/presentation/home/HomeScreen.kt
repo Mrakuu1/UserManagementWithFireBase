@@ -5,12 +5,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardElevation
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
@@ -26,11 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavController
-import com.usermgmt.admin.presentation.auth.registration.RegistrationEffect
 import com.usermgmt.admin.presentation.components.AppSnackbarHost
 import com.usermgmt.admin.presentation.components.LoadingOverlay
-import com.usermgmt.admin.presentation.navigation.Screens
+import com.usermgmt.admin.presentation.components.UserCard
 import kotlinx.coroutines.launch
 
 
@@ -53,7 +50,7 @@ fun HomeScreen(
 
     LaunchedEffect(Unit){
 
-        viewModel.homeEffect.collect{ effect ->
+        viewModel.homeEffect.collect { effect ->
             when(effect){
 
                 is HomeEffect.Success -> {
@@ -74,6 +71,11 @@ fun HomeScreen(
     }
 
     Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp)
+            .statusBarsPadding()
+            .navigationBarsPadding(),
         topBar = {
             Text(
                 text = "Home Screen",
@@ -89,9 +91,6 @@ fun HomeScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(20.dp, Alignment.CenterVertically)
-
         ) {
             Text(
                 text = "Users List",
@@ -102,25 +101,48 @@ fun HomeScreen(
                 Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                items(uiState.users.size) { index ->
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(5.dp),
-                        onClick = { viewModel.onIntent(HomeIntent.OnUserClick(uiState.users[index].id)) },
-                    ) {
-                        Text(
-                            text = uiState.users[index].name,
-                            modifier = Modifier.padding(10.dp)
-                        )
-                        Text(
-                            text = uiState.users[index].email,
-                            modifier = Modifier.padding(10.dp)
-                        )
-                        Text(
-                            text = uiState.users[index].phone,
-                            modifier = Modifier.padding(10.dp)
-                        )
-                    }
+                items(uiState.users) { user ->
+                    UserCard(
+                        user = user,
+                        expanded = uiState.expandedUserId == user.id,
+                        editing = uiState.editingUserId == user.id,
+                        editUser = uiState.editingUser,
+                        onClick = {
+                            viewModel.onIntent(
+                                HomeIntent.OnUserClick(user.id)
+                            )
+                        },
+                        onEdit = {
+                            viewModel.onIntent(
+                                HomeIntent.EditUser(user)
+                            )
+                        },
+                        onDelete = {
+                            viewModel.onIntent(
+                                HomeIntent.DeleteUser(user.id)
+                            )
+                        },
+                        onUpdateUser = {
+                            viewModel.onIntent(
+                                HomeIntent.UpdateUser(it)
+                            )
+                        },
+                        onSave = {
+                            viewModel.onIntent(
+                                HomeIntent.SaveUpdate
+                            )
+                        },
+                        onCancel = {
+                            viewModel.onIntent(
+                                HomeIntent.CancelEdit
+                            )
+                        },
+                        onEmailClick = {
+                            viewModel.onIntent(
+                                HomeIntent.OnEmailClick
+                            )
+                        }
+                    )
                 }
             }
         }
