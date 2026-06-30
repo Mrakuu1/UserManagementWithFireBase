@@ -1,7 +1,5 @@
 package com.usermgmt.user.domain.model
 
-import com.usermgmt.user.core.util.DeviceInfo
-
 data class User(
 
     val id:String = "",
