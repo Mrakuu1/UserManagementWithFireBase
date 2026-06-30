@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.usermgmt.user.presentation.auth.login.LoginScreen
 import com.usermgmt.user.presentation.auth.registration.RegisterScreen
+import com.usermgmt.user.presentation.language.LanguageScreen
 
 @Composable
 fun AppNavHost() {
@@ -22,9 +23,15 @@ fun AppNavHost() {
             LoginScreen(navController = navController)
         }
         composable(
-            route = "register"
+            route = Screens.Register.route
         ) {
             RegisterScreen(navController = navController)
+        }
+
+        composable(
+            route = Screens.Language.route
+        ) {
+            LanguageScreen(navController = navController)
         }
     }
 

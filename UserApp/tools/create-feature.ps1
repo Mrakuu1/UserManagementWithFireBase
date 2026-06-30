@@ -5,9 +5,9 @@ param(
 
 $featureLower = $FeatureName.ToLower()
 
-$basePath = "app/src/main/java/com/usermgmt/user/presentation/auth/$featureLower"
+$basePath = "app/src/main/java/com/usermgmt/user/presentation/$featureLower"
 
-$package = "com.usermgmt.user.presentation.auth.$featureLower"
+$package = "com.usermgmt.user.presentation.$featureLower"
 
 
 

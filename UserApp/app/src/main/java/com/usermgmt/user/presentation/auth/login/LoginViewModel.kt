@@ -37,6 +37,8 @@ class LoginViewModel @Inject constructor(
     fun onIntent(intent:LoginIntent){
         when(intent){
             is LoginIntent.LoginUser -> { login() }
+            is LoginIntent.RegisterUser -> { _loginEffect.trySend(LoginEffect.RegisterUser) }
+            is LoginIntent.LanguageSelection -> { _loginEffect.trySend(LoginEffect.LanguageSelection) }
             is LoginIntent.UpdateUserName -> { update { it.copy(name = intent.name) } }
             is LoginIntent.UpdatePassword -> { update { it.copy(password = intent.password) } }
              else -> {}

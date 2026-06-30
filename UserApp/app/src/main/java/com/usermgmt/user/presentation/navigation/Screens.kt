@@ -13,5 +13,6 @@ sealed class Screens(
     data object Profile :
         Screens("profile")
 
-
+    data object Language :
+        Screens("language")
 }

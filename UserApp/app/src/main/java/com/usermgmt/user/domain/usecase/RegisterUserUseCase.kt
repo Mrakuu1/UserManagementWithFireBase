@@ -1,11 +1,11 @@
 package com.usermgmt.user.domain.usecase
 
 import com.usermgmt.user.core.common.AppResult
-import com.usermgmt.user.core.util.DeviceInfoUtil
 import com.usermgmt.user.domain.model.User
 import com.usermgmt.user.domain.repository.AuthRepository
+import javax.inject.Inject
 
-class RegisterUserUseCase(
+class RegisterUserUseCase @Inject constructor(
     private val repository: AuthRepository
 ) {
     suspend operator fun invoke(
